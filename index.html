@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css@2.2.1/css/nes.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="heart.png" />
+</head>
+<body>
+<h1 style="text-align: center; margin-top: 50px;">Jean Nerator</h1>
+<div style="text-align: center; margin-top: 70px">
+    <button id="generate" type="button" class="nes-btn is-success">Generate</button>
+</div>
+<h2 id="jean" style="text-align: center; margin-top: 70px"></h2>
+</body>
+<script>
+    var jean = [
+        "Jean Nétéou",
+        "Jean Globe",
+        "Jean Neymar",
+        "Jean Sérien",
+        "Jean Kete",
+    ];
+    document.getElementById("generate").addEventListener("click", function (e) {
+        document.getElementById("jean").innerHTML = jean[Math.floor(Math.random() * jean.length)];
+    });
+</script>
