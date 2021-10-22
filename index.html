@@ -4,24 +4,29 @@
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link href="https://unpkg.com/nes.css@2.2.1/css/nes.min.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="heart.png" />
+    <!--<link rel="icon" type="image/png" href="heart.png" />-->
+    <title>Jean Nerator</title>
+    <meta name="description" content="Jean Nerator, le générateur de Jean !">
 </head>
-<body>
-<h1 style="text-align: center; margin-top: 50px;">Jean Nerator</h1>
-<div style="text-align: center; margin-top: 70px">
-    <button id="generate" type="button" class="nes-btn is-success">Generate</button>
-</div>
+<body style="text-align: center;">
+<h1 style="margin-top: 50px;">Jean Nerator</h1>
+<button style="margin-top: 70px" id="generate" type="button" class="nes-btn is-success">Generate</button>
 <h2 id="jean" style="text-align: center; margin-top: 70px"></h2>
-</body>
+<img id="img" src="" style="margin-top: 50px;"/>
 <script>
     var jean = [
-        "Jean Nétéou",
-        "Jean Globe",
-        "Jean Neymar",
-        "Jean Sérien",
-        "Jean Kete",
+        "Nétéou",
+        "Globe",
+        "Neymar",
+        "Sérien",
+        "Kete",
+        "Poche",
+        "Foui"
     ];
     document.getElementById("generate").addEventListener("click", function (e) {
-        document.getElementById("jean").innerHTML = jean[Math.floor(Math.random() * jean.length)];
+        document.getElementById("jean").innerHTML = "Jean " + jean[Math.floor(Math.random() * jean.length)];
+        document.getElementById("img").src = "https://loremflickr.com/320/240/man?" + new Date().getTime();
     });
 </script>
+</body>
+</html>
