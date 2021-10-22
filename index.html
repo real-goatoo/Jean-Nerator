@@ -4,15 +4,28 @@
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link href="https://unpkg.com/nes.css@2.2.1/css/nes.min.css" rel="stylesheet" />
-    <!--<link rel="icon" type="image/png" href="heart.png" />-->
+    <link rel="icon" type="image/png" href="jean.png" />
     <title>Jean Nerator</title>
     <meta name="description" content="Jean Nerator, le générateur de Jean !">
 </head>
 <body style="text-align: center;">
 <h1 style="margin-top: 50px;">Jean Nerator</h1>
+<section class="nes-container with-title" style="width: 600px; margin: auto; margin-top: 30px;">
+    <h2 class="title" id="jean"></h2>
+    <img id="img" src="" style="margin-top: 50px;"/>
+</section>
+<br>
 <button style="margin-top: 70px" id="generate" type="button" class="nes-btn is-success">Generate</button>
-<h2 id="jean" style="text-align: center; margin-top: 70px"></h2>
-<img id="img" src="" style="margin-top: 50px;"/>
+<br>
+<button style="margin-top: 70px" id="experimentalJean" type="button" class="nes-btn is-primary">Experimental ♂️</button>
+<button style="margin-top: 70px" id="experimentalJeanne" type="button" class="nes-btn is-error">Experimental ♀️</button>
+
+<a href="https://github.com/real-goatoo/Jean-Nerator" target="_blank">
+<i class="nes-icon github" style="position: absolute;
+bottom: 5px;
+right: 5px;
+"></i>
+</a>
 <script>
     var jean = [
         "Nétéou",
@@ -20,14 +33,56 @@
         "Neymar",
         "Sérien",
         "Kete",
-        "Poche",
-        "Foui",
-        "Bien",
+        "Pauche",
+        "Fouy",
         "Bon"
     ];
+    var experimentalJean = [];
+    fetch('./verb.json')
+        .then(response => response.json())
+        .then(function(data) {
+            experimentalJean = data.filter(
+                function(verb) {
+                    if (typeof verb.Indicatif === 'undefined') {
+                        return false;
+                    }
+                    return verb.Indicatif.Présent[0].startsWith("en");
+                }).map(function(verb) {
+                    var name = verb.Indicatif.Présent[0].substring(2);
+                    return "Jean "+name.charAt(0).toUpperCase() + name.slice(1);
+                })
+        });
+
+        
+    var experimentalJeanne = [];
+    fetch('./verb.json')
+        .then(response => response.json())
+        .then(function(data) {
+            experimentalJeanne = data.filter(
+                function(verb) {
+                    if (typeof verb.Indicatif === 'undefined') {
+                        return false;
+                    }
+                    return verb.Indicatif.Présent[0].startsWith("an");
+                }).map(function(verb) {
+                    var name = verb.Indicatif.Présent[0].substring(2);
+                    return "Jeanne "+name.charAt(0).toUpperCase() + name.slice(1);
+                })
+        });
+
     document.getElementById("generate").addEventListener("click", function (e) {
         document.getElementById("jean").innerHTML = "Jean " + jean[Math.floor(Math.random() * jean.length)];
         document.getElementById("img").src = "https://loremflickr.com/320/240/man?" + new Date().getTime();
+    });
+    
+    document.getElementById("experimentalJean").addEventListener("click", function (e) {
+        document.getElementById("jean").innerHTML = experimentalJean[Math.floor(Math.random() * experimentalJean.length)];
+        document.getElementById("img").src = "https://loremflickr.com/320/240/man,old?" + new Date().getTime();
+    });
+    
+    document.getElementById("experimentalJeanne").addEventListener("click", function (e) {
+        document.getElementById("jean").innerHTML = experimentalJeanne[Math.floor(Math.random() * experimentalJeanne.length)];
+        document.getElementById("img").src = "https://loremflickr.com/320/240/women,old?" + new Date().getTime();
     });
 </script>
 </body>
