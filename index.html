@@ -37,6 +37,8 @@ right: 5px;
         "Fouy",
         "Bon"
     ];
+    var vowels = ["a","e","i","o","u","y"];
+
     var experimentalJean = [];
     fetch('./verb.json')
         .then(response => response.json())
@@ -46,14 +48,14 @@ right: 5px;
                     if (typeof verb.Indicatif === 'undefined') {
                         return false;
                     }
-                    return verb.Indicatif.Présent[0].startsWith("en");
+                    return verb.Indicatif.Présent[0].startsWith("en") || (verb.Indicatif.Présent[0].startsWith("an") && !vowels.includes(verb.Indicatif.Présent[0][2]));
                 }).map(function(verb) {
-                    var name = verb.Indicatif.Présent[0].substring(2);
-                    return "Jean "+name.charAt(0).toUpperCase() + name.slice(1);
-                })
+                var name = verb.Indicatif.Présent[0].substring(2);
+                return "Jean "+name.charAt(0).toUpperCase() + name.slice(1);
+            })
         });
 
-        
+
     var experimentalJeanne = [];
     fetch('./verb.json')
         .then(response => response.json())
@@ -63,11 +65,11 @@ right: 5px;
                     if (typeof verb.Indicatif === 'undefined') {
                         return false;
                     }
-                    return verb.Indicatif.Présent[0].startsWith("an");
+                    return verb.Indicatif.Présent[0].startsWith("an") && vowels.includes(verb.Indicatif.Présent[0][2]);
                 }).map(function(verb) {
-                    var name = verb.Indicatif.Présent[0].substring(2);
-                    return "Jeanne "+name.charAt(0).toUpperCase() + name.slice(1);
-                })
+                var name = verb.Indicatif.Présent[0].substring(2);
+                return "Jeanne "+name.charAt(0).toUpperCase() + name.slice(1);
+            })
         });
 
     document.getElementById("generate").addEventListener("click", function (e) {
