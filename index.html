@@ -11,7 +11,10 @@
 <body style="text-align: center;">
 <h1 style="margin-top: 50px;">Jean Nerator</h1>
 <section class="nes-container with-title" style="width: 600px; margin: auto; margin-top: 30px;">
-    <h2 class="title" id="jean"></h2>
+    <div class="title"><h3 style="display: inline-block" id="jean"></h3>
+        <a>
+            <img id="speak" src="./speak.png" alt="" style="margin-left: .5rem;margin-bottom: .5rem; width: 32px; display: none"></div>
+        </a>
     <img id="img" src="" style="margin-top: 50px;"/>
 </section>
 <br>
@@ -19,7 +22,6 @@
 <br>
 <button style="margin-top: 70px" id="experimentalJean" type="button" class="nes-btn is-primary">Experimental ♂️</button>
 <button style="margin-top: 70px" id="experimentalJeanne" type="button" class="nes-btn is-error">Experimental ♀️</button>
-
 <a href="https://github.com/real-goatoo/Jean-Nerator" target="_blank">
 <i class="nes-icon github" style="position: absolute;
 bottom: 5px;
@@ -89,16 +91,29 @@ right: 5px;
     document.getElementById("generate").addEventListener("click", function (e) {
         document.getElementById("jean").innerHTML = "Jean " + jean[Math.floor(Math.random() * jean.length)];
         document.getElementById("img").src = "https://loremflickr.com/320/240/man?" + new Date().getTime();
+        document.getElementById("speak").style.display = "inline-block";
     });
     
     document.getElementById("experimentalJean").addEventListener("click", function (e) {
         document.getElementById("jean").innerHTML = experimentalJean[Math.floor(Math.random() * experimentalJean.length)];
         document.getElementById("img").src = "https://loremflickr.com/320/240/man,old?" + new Date().getTime();
+        document.getElementById("speak").style.display = "inline-block";
     });
     
     document.getElementById("experimentalJeanne").addEventListener("click", function (e) {
         document.getElementById("jean").innerHTML = experimentalJeanne[Math.floor(Math.random() * experimentalJeanne.length)];
         document.getElementById("img").src = "https://loremflickr.com/320/240/women,old?" + new Date().getTime();
+        document.getElementById("speak").style.display = "inline-block";
+    });
+
+    var synth = window.speechSynthesis;
+
+    document.getElementById("speak").addEventListener("click", function (e) {
+        var utterThis = new SpeechSynthesisUtterance(document.getElementById("jean").innerHTML);
+        utterThis.lang = "fr-FR";
+        utterThis.pitch = 1.2;
+        utterThis.rate = 0.6;
+        synth.speak(utterThis);
     });
 </script>
 </body>
