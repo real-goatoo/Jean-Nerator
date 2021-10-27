@@ -74,7 +74,8 @@ right: 5px;
                     return verb.Indicatif.Présent[0].startsWith("an") && vowels.includes(verb.Indicatif.Présent[0][2]);
                 }).map(function(verb) {
                 var name = verb.Indicatif.Présent[0].substring(2);
-                return "Jeanne "+name.charAt(0).toUpperCase() + name.slice(1);
+                var sliceNumber = name[2] === "n" ? 2 : 1;
+                return "Jeanne "+name.charAt(0).toUpperCase() + name.slice(sliceNumber);
             })
         });
 
